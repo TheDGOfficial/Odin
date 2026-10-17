@@ -96,13 +96,12 @@ object LeapMenu : Module(
                 if (leapTeammates.isEmpty()) return false
                 val keybindList = if (keybindType == KeybindMode.CORNERS) listOf(topLeftKeybind, topRightKeybind, bottomLeftKeybind, bottomRightKeybind)
                 else listOf(archerKeybind, berserkerKeybind, healerKeybind, mageKeybind, tankKeybind)
-                val pressed = InputConstants.getKey(input)
-                if (pressed !in keybindList) return false
+                if (keybindList.none { it.value == input.key() }) return false
 
                 val chest = currentLeapScreen() ?: return false
 
-                val index = if (keybindType == KeybindMode.CORNERS) keybindList.indexOf(pressed)
-                else DungeonClass.entries.find { clazz -> clazz.ordinal == keybindList.indexOf(pressed) }
+                val index = if (keybindType == KeybindMode.CORNERS) keybindList.indexOfFirst { it.value == input.key() }
+                else DungeonClass.entries.find { clazz -> clazz.ordinal == keybindList.indexOfFirst { it.value == input.key() } }
                     ?.let { clazz -> leapTeammates.indexOfFirst { it.clazz == clazz } } ?: return false
 
                 if (index < 0) return false

@@ -1,12 +1,11 @@
 #version 330
-#extension GL_ARB_separate_shader_objects : require
 
-#include <minecraft:dynamictransforms.glsl>
-#include <odin:round_rect.glsl>
+#moj_import <minecraft:dynamictransforms.glsl>
+#moj_import <odin:round_rect.glsl>
 
 uniform sampler2D Sampler0;
 
-layout(location = 0) out vec4 fragColor;
+out vec4 fragColor;
 
 void main() {
     float coverage = shapeCoverage();
