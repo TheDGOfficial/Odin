@@ -94,9 +94,7 @@ fun handleSpawnPacket(particle: ClientboundLevelParticlesPacket) {
         particle.xDist != 2f ||
         particle.yDist != 3f ||
         particle.zDist != 2f ||
-        particle.xMaxSpeed != 0f ||
-        particle.yMaxSpeed != 0f ||
-        particle.zMaxSpeed != 0f ||
+        particle.maxSpeed != 0f ||
         particle.x % 1 != 0.0 ||
         particle.z % 1 != 0.0
     ) return

@@ -52,7 +52,7 @@ private fun DungeonWaypoints.cacheEtherwarpTarget() {
 }
 
 fun DungeonWaypoints.handleEditorInput(event: InputEvent) {
-    if (event.key.type != InputConstants.Type.MOUSE || event.key.value != InputConstants.MOUSE_BUTTON_RIGHT || mc.gui.screen() != null) return
+    if (event.key.value != InputConstants.MOUSE_BUTTON_RIGHT || mc.gui.screen() != null) return
     cacheEtherwarpTarget()
     if (!allowEdits) return
     val room = DungeonUtils.currentRoom ?: return

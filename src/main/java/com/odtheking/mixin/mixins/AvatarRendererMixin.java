@@ -23,8 +23,8 @@ public class AvatarRendererMixin {
             method = "extractRenderState(Lnet/minecraft/world/entity/Avatar;Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;F)V",
             at = @At("HEAD")
     )
-    private void extractRenderState(Avatar entity, AvatarRenderState state, float partialTicks, CallbackInfo ci) {
+    private void extractRenderState(Avatar entity, AvatarRenderState avatarRenderState, float f, CallbackInfo ci) {
         if (!(entity instanceof AbstractClientPlayer clientAvatarEntity)) return;
-        state.setData(PlayerSize.getGAME_PROFILE_KEY(), clientAvatarEntity.getGameProfile());
+        avatarRenderState.setData(PlayerSize.getGAME_PROFILE_KEY(), clientAvatarEntity.getGameProfile());
     }
 }
