@@ -9,8 +9,10 @@ import com.odtheking.odin.utils.Color
 import com.odtheking.odin.utils.Color.Companion.multiplyAlpha
 import com.odtheking.odin.utils.addVec
 import com.odtheking.odin.utils.center
+import net.fabricmc.fabric.api.client.rendering.v1.SubmitRenderPhases
 import net.minecraft.client.gui.Font
 import net.minecraft.client.renderer.blockentity.BeaconRenderer
+import net.minecraft.client.renderer.feature.TextFeatureRenderer
 import net.minecraft.client.renderer.rendertype.RenderTypes
 import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.core.BlockPos
@@ -20,6 +22,7 @@ import net.minecraft.resources.Identifier
 import net.minecraft.util.LightCoordsUtil
 import net.minecraft.world.phys.AABB
 import net.minecraft.world.phys.Vec3
+import org.joml.Matrix4f
 import org.joml.Vector3f
 import org.joml.unaryMinus
 import kotlin.math.cos
