@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class EntityRendererMixin<T extends Entity> {
 
     @Inject(method = "shouldRender", at = @At("RETURN"), cancellable = true)
-    private void onRender(T entity, Frustum culler, double camX, double camY, double camZ, float partialTicks, CallbackInfoReturnable<Boolean> cir) {
+    private void onRender(T entity, Frustum culler, double camX, double camY, double camZ, CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValueZ()) return;
 
         if (shouldHideDeadEntity(entity) ||
