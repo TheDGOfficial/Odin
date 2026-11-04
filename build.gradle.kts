@@ -19,7 +19,7 @@ repositories {
     maven("https://api.modrinth.com/maven")
 }
 
-val bundled: Configuration by configurations.creating
+val bundled = configurations.create("bundled")
 configurations.implementation { extendsFrom(bundled) }
 
 dependencies {
@@ -55,33 +55,35 @@ configurations.named("include") {
 loom {
     accessWidenerPath = rootProject.file("src/main/resources/odin.accesswidener")
     runConfigs.named("client") {
-        isIdeConfigGenerated = true
-        vmArgs.addAll(
-            arrayOf(
-                "-Dmixin.debug.export=true",
-                "-Ddevauth.enabled=true",
-                "-Ddevauth.account=main",
-                "-XX:+AllowEnhancedClassRedefinition",
-                "-XX:+IgnoreUnrecognizedVMOptions", // AllowEnhancedClassRedefinition is only available on JBR
-            )
+        generateRunConfig.set(true)
+        jvmArguments.addAll(
+            "-Dmixin.debug.export=true",
+            "-Ddevauth.enabled=true",
+            "-Ddevauth.account=main",
+            "-Dfabric.log.disableAnsi=false",
+            "-XX:StackShadowPages=32",
+            "-XX:+AllowEnhancedClassRedefinition",
+            "-XX:+IgnoreUnrecognizedVMOptions", // AllowEnhancedClassRedefinition is only available on JBR
         )
     }
 
     runConfigs.named("server") {
-        isIdeConfigGenerated = false
+        generateRunConfig.set(false)
     }
+
+    uncompressNestedJars = true
 }
 
 afterEvaluate {
     loom.runs.named("client") {
-        vmArg("-javaagent:${configurations.compileClasspath.get().find { it.name.contains("sponge-mixin") }}")
+        jvmArguments.add("-javaagent:${configurations.compileClasspath.get().find { it.name.contains("sponge-mixin") }}")
     }
 }
 
 tasks {
     processResources {
         filesMatching("fabric.mod.json") {
-            expand(getProperties())
+            expand(project.properties)
         }
     }
 

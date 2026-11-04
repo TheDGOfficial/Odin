@@ -83,9 +83,9 @@ object PlayerSize : Module(
     }
 
     init {
-        OdinMod.scope.launch {
+        /*OdinMod.scope.launch {
             updateCustomProperties()
-        }
+        }*/
     }
 
     @JvmStatic

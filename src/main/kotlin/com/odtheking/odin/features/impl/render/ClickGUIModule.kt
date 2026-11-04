@@ -91,11 +91,11 @@ object ClickGUIModule : Module(
     private var hasSentUpdateMessage = false
 
     init {
-        OdinMod.scope.launch {
+        /*OdinMod.scope.launch {
             latestVersionNumber = checkNewerVersion(OdinMod.version.toString())
             val name = mc.user.name.takeIf { !it.matches(Regex("Player\\d{2,3}")) } ?: return@launch
             postData("https://api.odtheking.com/tele/", """{"username": "$name", "version": "Fabric ${OdinMod.version}"}""")
-        }
+        }*/
 
         on<MessageEvent.Chat> {
             if (!profileRegex.matches(message)) return@on
@@ -163,11 +163,11 @@ object ClickGUIModule : Module(
         }
     }
 
-    private suspend fun checkNewerVersion(currentVersion: String): String? {
+    /*private suspend fun checkNewerVersion(currentVersion: String): String? {
         val newest = fetchJson<Release>("https://api.github.com/repos/odtheking/OdinFabric/releases/latest").getOrElse { return null }
 
         return if (isSecondNewer(currentVersion, newest.tagName)) newest.tagName else null
-    }
+    }*/
 
     private fun isSecondNewer(currentVersion: String, previousVersion: String?): Boolean {
         if (currentVersion.isEmpty() || previousVersion.isNullOrEmpty()) return false

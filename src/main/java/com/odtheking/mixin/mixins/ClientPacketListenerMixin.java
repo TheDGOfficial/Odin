@@ -15,10 +15,10 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(ClientPacketListener.class)
 public class ClientPacketListenerMixin {
 
-    @ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/DebugScreenOverlay;showNetworkCharts()Z"))
+    /*@ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/DebugScreenOverlay;showNetworkCharts()Z"))
     private boolean alwaysSendPing(boolean original) {
         return true;
-    }
+    }*/
 
     @WrapOperation(method = "handleBundlePacket", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/protocol/Packet;handle(Lnet/minecraft/network/PacketListener;)V"))
     private void wrapPacketHandle(Packet<?> packet, PacketListener listener, Operation<Void> original) {

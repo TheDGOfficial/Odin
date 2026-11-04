@@ -93,9 +93,9 @@ object Croesus : Module(
     private val chestCostContributions = linkedMapOf<Int, Double>()
 
     init {
-        scope.launch {
+        /*scope.launch {
             cachedPrices = fetchJson<Map<String, Double>>("https://lb.odtheking.com/averages/7day").getOrElse { OdinMod.logger.error("Failed to fetch lowest bin prices for Croesus module.", it); emptyMap() }
-        }
+        }*/
 
         on<GuiEvent.DrawTooltip> {
             val title = screen.title.string
