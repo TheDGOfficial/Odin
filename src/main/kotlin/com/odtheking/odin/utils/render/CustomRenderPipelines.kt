@@ -8,7 +8,6 @@ import com.mojang.blaze3d.pipeline.RenderPipeline
 import com.mojang.blaze3d.platform.CompareOp
 import com.mojang.blaze3d.vertex.DefaultVertexFormat
 import net.minecraft.client.renderer.RenderPipelines
-import net.minecraft.client.renderer.oit.OitPipelineSet
 import net.minecraft.resources.Identifier
 import java.util.*
 
@@ -16,7 +15,6 @@ object CustomRenderPipelines {
     private val NO_DEPTH = Optional.empty<DepthStencilState>()
     private val DEPTH_WRITE = DepthStencilState(CompareOp.GREATER_THAN_OR_EQUAL, true)
     private val TRANSLUCENT = ColorTargetState(BlendFunction.TRANSLUCENT)
-    private val DEPTH_WRITE = DepthStencilState(CompareOp.GREATER_THAN_OR_EQUAL, true)
 
     val LINES_TRANSLUCENT_DEPTH: RenderPipeline = RenderPipelines.register(
         RenderPipeline.builder(RenderPipelines.LINES_SNIPPET)
@@ -74,18 +72,6 @@ object CustomRenderPipelines {
             .withColorTargetState(TRANSLUCENT)
             .withCull(false)
             .withLocation("odin/quads_translucent_esp")
-            .build()
-    )
-
-    val OIT_LINES_ESP: OitPipelineSet = RenderPipelines.register(
-        OitPipelineSet.builder("odin_lines_esp", RenderPipeline.builder(RenderPipelines.OIT_LINES_SNIPPET))
-            .withoutDepthTest()
-            .build()
-    )
-
-    val OIT_QUADS_ESP: OitPipelineSet = RenderPipelines.register(
-        OitPipelineSet.builder("odin_quads_esp", RenderPipeline.builder(RenderPipelines.OIT_DEBUG_FILLED_SNIPPET))
-            .withoutDepthTest()
             .build()
     )
 

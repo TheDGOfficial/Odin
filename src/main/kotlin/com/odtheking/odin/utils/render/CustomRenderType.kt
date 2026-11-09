@@ -21,7 +21,6 @@ object CustomRenderType {
     val LINES_TRANSLUCENT_DEPTH: RenderType = RenderType.create(
         "lines-translucent-depth",
         RenderSetup.builder(CustomRenderPipelines.LINES_TRANSLUCENT_DEPTH)
-            .setOitPipelines(RenderPipelines.OIT_LINES_TRANSLUCENT)
             .setLayeringTransform(LayeringTransform.VIEW_OFFSET_Z_LAYERING)
             .setOutputTarget(OutputTarget.ITEM_ENTITY_TARGET)
             .createRenderSetup()
@@ -39,7 +38,6 @@ object CustomRenderType {
     val QUADS_OPAQUE: RenderType = RenderType.create(
         "quads-opaque",
         RenderSetup.builder(CustomRenderPipelines.QUADS_OPAQUE)
-            .setOitPipelines(RenderPipelines.OIT_DEBUG_FILLED_BOX)
             .setLayeringTransform(LayeringTransform.VIEW_OFFSET_Z_LAYERING)
             .setOutputTarget(OutputTarget.ITEM_ENTITY_TARGET)
             .sortOnUpload()
@@ -49,7 +47,6 @@ object CustomRenderType {
     val QUADS_TRANSLUCENT: RenderType = RenderType.create(
         "quads-translucent",
         RenderSetup.builder(CustomRenderPipelines.QUADS_TRANSLUCENT)
-            .setOitPipelines(RenderPipelines.OIT_DEBUG_FILLED_BOX)
             .setLayeringTransform(LayeringTransform.VIEW_OFFSET_Z_LAYERING)
             .setOutputTarget(OutputTarget.ITEM_ENTITY_TARGET)
             .sortOnUpload()
